@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/color_splash"
+    tools:context=".Login">
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="LOGIN"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/login_container"
+        android:layout_marginBottom="20dp"/>
+
+    <RelativeLayout
+        android:id="@+id/login_container"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:clipToPadding="false"
+        android:layout_centerInParent="true"
+        android:background="@drawable/rounded_corners">
+
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:hint="Email"
+            android:padding="5dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="@color/cardview_light_background"/>
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:hint="Password"
+            android:padding="5dp"
+            android:layout_marginVertical="20dp"
+            android:inputType="textPassword"
+            android:layout_below="@+id/editTextEmail"
+            android:background="@color/cardview_light_background"/>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/loginSubmit"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/login_container"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Log In"
+        android:background="@drawable/rounded_corners"
+        />
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        app:layout_constraintHorizontal_bias="0.488"
+       android:layout_marginTop="20dp"
+        android:layout_below="@+id/loginSubmit"
+   >
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_weight="0.75"
+            android:text="Not registered?"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textViewRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Register"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</RelativeLayout>
