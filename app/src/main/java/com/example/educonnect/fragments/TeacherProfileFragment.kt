@@ -23,6 +23,7 @@ class TeacherProfileFragment : Fragment() {
     private lateinit var sharedViewModel: SharedViewModel
 
 
+
     companion object {
         private const val ARG_TEACHER_NAME = "teacher_name"
         private const val ARG_TEACHER_EMAIL = "teacher_email"
@@ -56,15 +57,17 @@ class TeacherProfileFragment : Fragment() {
         etEmail=view.findViewById(R.id.tv_teacher_email)
         btnAdd=view.findViewById(R.id.btn_add_teacher)
 
+
         val name=arguments?.getString(ARG_TEACHER_NAME)
         val email=arguments?.getString(ARG_TEACHER_EMAIL)
         val subject=arguments?.getString(ARG_TEACHER_SUBJECT)
-        val role=arguments?.getString(ARG_TEACHER_NAME)
-        val uid=arguments?.getString(ARG_TEACHER_NAME)
+        val role=arguments?.getString(ARG_TEACHER_ROLE)
+        val uid=arguments?.getString(ARG_TEACHER_UID)
 
         etName.text=name
         etSubject.text=subject
         etEmail.text=email
+
 
         btnAdd.setOnClickListener{
             val teacher = User(name,email,role,subject,uid)

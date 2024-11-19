@@ -1,7 +1,7 @@
 package com.example.educonnect.dataclass
 
-data class User(val name: String?,
-                val email: String?,
-                val role: String?,
-                val subject: String?,
-                val uid:String?)
+data class User(val name: String?=null,
+                val email: String?=null,
+                val role: String?=null,
+                val subject: String?=null,
+                val uid:String?=null)

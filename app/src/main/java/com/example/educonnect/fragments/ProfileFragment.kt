@@ -11,11 +11,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.educonnect.Login
 import com.example.educonnect.R
 import com.example.educonnect.dataclass.User
 import com.example.educonnect.room.Profile
@@ -37,6 +39,8 @@ class ProfileFragment : Fragment() {
     private lateinit var edtEmail:TextView
     private lateinit var fabBtn: FloatingActionButton
     private lateinit var imgProfile: ImageView
+    private lateinit var btnLogout: Button
+    private lateinit var mAuth:FirebaseAuth
     private lateinit var mDbRef: DatabaseReference
     private lateinit var profileDao: ProfileDao
     private val IMAGE_PICK_REQUEST = 1
@@ -52,13 +56,14 @@ class ProfileFragment : Fragment() {
         edtEmail = view.findViewById(R.id.email)
         imgProfile = view.findViewById(R.id.profile_picture)
         fabBtn = view.findViewById(R.id.edit_profile_fab)
-
+        btnLogout=view.findViewById(R.id.Logout)
+        mAuth= FirebaseAuth.getInstance()
         profileDao = ProfileDatabase.getDatabase(requireContext()).profileDao()
 
         loadProfile()
 
 
-        val senderUid = FirebaseAuth.getInstance().currentUser?.uid
+        val senderUid = mAuth.currentUser?.uid
         mDbRef = FirebaseDatabase.getInstance().getReference("Users")
 
 
@@ -87,6 +92,14 @@ class ProfileFragment : Fragment() {
         fabBtn.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(intent, IMAGE_PICK_REQUEST)
+        }
+
+        btnLogout.setOnClickListener{
+            mAuth.signOut()
+            val intent = Intent(requireContext(), Login::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+
         }
 
 

@@ -58,9 +58,9 @@
         android:layout_below="@+id/login_container"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:text="Log In"
-        android:background="@drawable/rounded_corners"
-        />
+        android:text="LOG IN"
+        style="@style/myButton"
+         />
 
 
     <LinearLayout

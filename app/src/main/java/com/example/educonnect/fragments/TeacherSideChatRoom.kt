@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -100,6 +101,10 @@ class TeacherSideChatRoom : Fragment() {
 
         sendButton.setOnClickListener{
             val message=messageBox.text.toString()
+            if (message.isBlank()) {
+                Toast.makeText(context, "Message cannot be empty", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             val messageObject= senderUid?.let { it1 -> Message(it1,message) }
 
             mDbRef.child("chats").child(senderRoom!!).child("messages").push()

@@ -95,8 +95,8 @@
         android:layout_below="@+id/signup_container"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:text="Sign Up"
-        android:background="@drawable/rounded_corners"
+        android:text="SIGN UP"
+        style="@style/myButton"
         />
 
     <LinearLayout
