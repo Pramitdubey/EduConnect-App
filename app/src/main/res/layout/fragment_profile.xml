@@ -2,7 +2,45 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@drawable/color_splash">
+
+    <RelativeLayout
+        android:id="@+id/welcome_prompt"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:padding="16dp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/profile_container"
+        android:clipToPadding="false"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/rounded_corners">
+
+        <TextView
+            android:id="@+id/welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome Back"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            />
+
+        <TextView
+            android:id="@+id/welcome_profile"
+            android:layout_below="@+id/welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UserName"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="40dp"
+            android:textStyle="bold"
+            android:textColor="@color/myDarkGrey"
+            android:textSize="35dp"
+            />
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/profile_container"
@@ -11,7 +49,7 @@
     android:padding="16dp"
     android:layout_centerInParent="true"
     android:clipToPadding="false"
-    android:background="@drawable/edt_sent">
+    android:background="@drawable/rounded_corners">
 
     <ImageView
         android:id="@+id/profile_picture"
@@ -37,7 +75,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="user@example.com"
-        android:textSize="16sp"
+        android:textSize="20sp"
+        android:textStyle="italic"
         android:layout_below="@id/username"
         android:layout_marginTop="8dp"
         android:layout_centerHorizontal="true" />

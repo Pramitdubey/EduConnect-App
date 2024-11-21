@@ -8,7 +8,16 @@
     android:background="@drawable/color_splash"
     tools:context=".Login">
 
+    <ImageView
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/logintxt"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/login2"/>
+
     <TextView
+        android:id="@+id/logintxt"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="LOGIN"

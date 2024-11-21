@@ -34,26 +34,26 @@ class ChatFragment : Fragment(), TeacherRecyclerAdapter.OnItemClickListener {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_chat, container, false)
 
-        // Initialize Firebase and SharedViewModel
+
         mDbRef = FirebaseDatabase.getInstance().getReference()
         sharedViewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
         currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
 
-        // Set up RecyclerView
+
         teacherRecyclerView = view.findViewById(R.id.teachersChatList)
         teacherRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        // Observe teachers from SharedViewModel
+
         sharedViewModel.teachers.observe(viewLifecycleOwner) { teachers ->
             teacherList.clear()
-            teacherList.addAll(teachers) // Add teachers from SharedViewModel
-            loadActiveChats() // Fetch active chats
+            teacherList.addAll(teachers)
+            loadActiveChats()
         }
 
         return view
     }
 
-    // Fetch teachers who have active chats with the current user
+
     private fun loadActiveChats() {
         currentUserUid?.let { uid ->
             mDbRef.child("chats").addListenerForSingleValueEvent(object : ValueEventListener {
@@ -63,7 +63,7 @@ class ChatFragment : Fragment(), TeacherRecyclerAdapter.OnItemClickListener {
                     for (chatSnapshot in snapshot.children) {
                         val chatId = chatSnapshot.key
                         if (chatId != null && chatId.contains(uid)) {
-                            // Extract the other user's UID from the chat ID
+
                             val otherUid = if (chatId.startsWith(uid)) {
                                 chatId.removePrefix(uid)
                             } else {
@@ -73,7 +73,7 @@ class ChatFragment : Fragment(), TeacherRecyclerAdapter.OnItemClickListener {
                         }
                     }
 
-                    // Fetch teacher details for the active chat UIDs
+
                     fetchTeacherDetails(activeChatTeachers)
                 }
 
@@ -84,7 +84,7 @@ class ChatFragment : Fragment(), TeacherRecyclerAdapter.OnItemClickListener {
         }
     }
 
-    // Fetch teacher details for active chat UIDs
+
     private fun fetchTeacherDetails(activeChatTeachers: Set<String>) {
         mDbRef.child("Users").addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -92,17 +92,17 @@ class ChatFragment : Fragment(), TeacherRecyclerAdapter.OnItemClickListener {
                     val teacherSnapshot = snapshot.child(teacherUid)
                     val teacher = teacherSnapshot.getValue(User::class.java)
                     if (teacher != null && teacher.role == "Teacher" && !teacherList.contains(teacher)) {
-                        teacherList.add(teacher) // Add only if not already in the list
+                        teacherList.add(teacher)
                     }
                 }
 
-                // Update RecyclerView
+
                 teacherRecyclerAdapter = TeacherRecyclerAdapter(teacherList, this@ChatFragment)
                 teacherRecyclerView.adapter = teacherRecyclerAdapter
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // Handle error
+
             }
         })
     }

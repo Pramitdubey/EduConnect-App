@@ -40,6 +40,7 @@ class ProfileFragment : Fragment() {
     private lateinit var fabBtn: FloatingActionButton
     private lateinit var imgProfile: ImageView
     private lateinit var btnLogout: Button
+    private lateinit var profile_name:TextView
     private lateinit var mAuth:FirebaseAuth
     private lateinit var mDbRef: DatabaseReference
     private lateinit var profileDao: ProfileDao
@@ -58,6 +59,7 @@ class ProfileFragment : Fragment() {
         fabBtn = view.findViewById(R.id.edit_profile_fab)
         btnLogout=view.findViewById(R.id.Logout)
         mAuth= FirebaseAuth.getInstance()
+        profile_name=view.findViewById(R.id.welcome_profile)
         profileDao = ProfileDatabase.getDatabase(requireContext()).profileDao()
 
         loadProfile()
@@ -76,6 +78,7 @@ class ProfileFragment : Fragment() {
 
                         edtName.text = user.name ?: "N/A"
                         edtEmail.text = user.email ?: "N/A"
+                        profile_name.text=user.name ?: "N/A"
                     } else {
 
                         Toast.makeText(requireContext(), "User not found", Toast.LENGTH_SHORT).show()
@@ -102,7 +105,6 @@ class ProfileFragment : Fragment() {
 
         }
 
-
         return view
     }
 
@@ -112,12 +114,12 @@ class ProfileFragment : Fragment() {
             val uri = data.data
             if (uri != null) {
                 imgProfile.setImageURI(uri)
-                saveProfileWithImage(uri)
+                saveProfileWithImage()
             }
         }
     }
 
-    private fun saveProfileWithImage(uri: Uri) {
+    private fun saveProfileWithImage() {
         lifecycleScope.launch {
 
             val bitmap = (imgProfile.drawable as BitmapDrawable).bitmap
@@ -139,15 +141,16 @@ class ProfileFragment : Fragment() {
 
     private fun loadProfile() {
         lifecycleScope.launch {
-            val profile = profileDao.getProfileById(1)
-            if (profile != null) {
-                edtName.text = profile.name
-                edtEmail.text = profile.email
-                profile.image?.let {
-                    val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
-                    imgProfile.setImageBitmap(bitmap)
-                }
-            }
+    val profile = profileDao.getProfileById(1)
+    if (profile != null) {
+        edtName.text = profile.name
+        edtEmail.text = profile.email
+        profile_name.text=profile.name
+        profile.image?.let {
+            val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
+            imgProfile.setImageBitmap(bitmap)
         }
     }
+}
+}
 }

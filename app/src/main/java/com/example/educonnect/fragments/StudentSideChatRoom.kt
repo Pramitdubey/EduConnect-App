@@ -70,7 +70,10 @@ class StudentSideChatRoom : Fragment() {
        senderRoom=receiverUid+senderUid
        receiverRoom= senderUid+receiverUid
 
-       (activity as AppCompatActivity).supportActionBar?.title =name
+       (activity as? AppCompatActivity)?.supportActionBar?.apply {
+           show()
+           title = name
+       }
 
        chatRecyclerView=view.findViewById(R.id.chatRecyclerView)
        messageBox=view.findViewById(R.id.messageBox)

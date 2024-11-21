@@ -33,7 +33,12 @@ class SearchFragment : Fragment() ,CategoriesRecyclerAdapter.OnItemClickListener
         val categories = listOf(
             Categories("Science", R.drawable.baseline_science_24),
             Categories("Psychology", R.drawable.baseline_psychology_24),
-            Categories("BioTech", R.drawable.baseline_biotech_24)
+            Categories("BioTech", R.drawable.baseline_biotech_24),
+            Categories("Analytics",R.drawable.baseline_analytics_24),
+            Categories("Android",R.drawable.baseline_android_24),
+            Categories("Architecture",R.drawable.baseline_apartment_24),
+            Categories("Agriculture",R.drawable.baseline_agriculture_24),
+            Categories("Bank",R.drawable.baseline_account_balance_24),
         )
 
         categoriesRecyclerAdapter = CategoriesRecyclerAdapter(categories,this)
