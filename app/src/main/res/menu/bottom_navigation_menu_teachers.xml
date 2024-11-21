@@ -9,4 +9,9 @@
         android:icon="@drawable/baseline_attribution_24"
         android:title="Profile" />
 
+    <item
+        android:id="@+id/navigation_article_teacher"
+        android:icon="@drawable/baseline_article_24"
+        android:title="Article" />
+
 </menu>

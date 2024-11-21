@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import com.example.educonnect.fragments.ArticleFragment
 import com.example.educonnect.fragments.ChatFragment
 import com.example.educonnect.fragments.ChatFragmentTeacher
 import com.example.educonnect.fragments.ProfileFragment
@@ -33,6 +34,10 @@ class MainActivityForTeacher : AppCompatActivity() {
                 }
                 R.id.navigation_profile_teacher->{
                     replaceFragment(ProfileFragment())
+                    true
+                }
+                R.id.navigation_article_teacher->{
+                    replaceFragment(ArticleFragment())
                     true
                 }
                 else->false

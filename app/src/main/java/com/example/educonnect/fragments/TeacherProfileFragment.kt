@@ -102,8 +102,9 @@ class TeacherProfileFragment : Fragment() {
     }
 
     private fun openMap() {
-        val uri = Uri.parse("geo: ${latitude},${longitude}")
-        val mapIntent = Intent(Intent.ACTION_VIEW,uri)
+        val name = arguments?.getString(ARG_TEACHER_NAME) ?: "Teacher Location"
+        val uri = Uri.parse("geo:$latitude,$longitude?q=$latitude,$longitude($name)")
+        val mapIntent = Intent(Intent.ACTION_VIEW, uri)
         mapIntent.setPackage("com.google.android.apps.maps")
         startActivity(mapIntent)
     }
